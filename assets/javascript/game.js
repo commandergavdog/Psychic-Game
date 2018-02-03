@@ -1,4 +1,7 @@
+//Letter choices available
 var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+//Setting all to zero
 var wins = 0;
 var losses = 0;
 var guesses = 9;
@@ -6,9 +9,15 @@ var guessesLeft = 9;
 var guessedLetters = [];
 var letterToGuess = null;
 
+
+
+//
 var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
+//Allows the user 9 guesses
+// guesses = guesses || 9
 var updateGuessesLeft = function() {
+  // 
   document.querySelector('#guessLeft').innerHTML = "Guesses left: " + guessesLeft;
 };
 
@@ -16,8 +25,10 @@ var updateLetterToGuess = function() {
   this.letterToGuess = this.computerChoices[Math.floor(Math.random() * this.computerChoices.length)];
 };
 var updateGuessesSoFar = function() {
+  //  
   document.querySelector('#let').innerHTML = "Your Guesses so far: " + guessedLetters.join(', ');
 };
+//
 var reset = function() {
   totalGuesses = 9;
   guessesLeft = 9;
@@ -32,6 +43,7 @@ updateLetterToGuess();
 updateGuessesLeft();
 
 
+//
 document.onkeyup = function(event) {
     guessesLeft--;
   var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
@@ -47,10 +59,13 @@ document.onkeyup = function(event) {
                 alert("Yes, you are psychic!");
                 reset();
             }
-        }else if(guessesLeft == 0){ 
+        }else if(guessesLeft == 0){
+            // update the html to display the loss 
             losses++;
             document.querySelector('#losses').innerHTML = "Losses: " + losses;
-            alert("Sorry, you're not psychic, maybe try again?"); 
+            alert("Sorry, you're not psychic, maybe try again?");
+            // call reset 
             reset();
         }
 };
+
